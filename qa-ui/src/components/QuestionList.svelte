@@ -1,0 +1,8 @@
+<script>
+    import Question from "./Question.svelte";
+    let questions = ["Question 1", "Question 2", "Question 3", "Question 4", "Question 5", ];
+</script>
+
+{#each questions as question}
+    <Question question={question}/>
+{/each}

@@ -1,0 +1,15 @@
+---
+import Layout from "../layout/Layout.astro";
+import QuestionList from "../components/QuestionList.svelte";
+
+export async function getStaticPaths() {
+  return [
+    { params: { course: 'course-1' } },
+    { params: { course: 'course-2' } },
+  ]
+}
+---
+
+<Layout>
+    <QuestionList client:only={"svelte"} />
+</Layout>
