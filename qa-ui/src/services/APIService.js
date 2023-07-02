@@ -12,4 +12,16 @@ const getCourseQuestions = async (c_id) => {
     return await response.json();
 }
 
-export { getCourseQuestions };
+const getCourseQuestionAnswers = async (c_id, q_id) => {
+    const data = { c_id: c_id, q_id: q_id };
+    const response = await fetch("/api/answers", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    return await response.json();
+}
+
+export { getCourseQuestions, getCourseQuestionAnswers };

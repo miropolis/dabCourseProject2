@@ -19,9 +19,14 @@ import * as questionService from "./services/questionService.js";
 
 const handlePostCourseQuestions = async (request) => {
   const searchParams = await request.json();
-  const courses = await questionService.findCourseQuestions(searchParams.c_id);
-  console.log("courseQuestions triggered. Following questions: ", courses)
-  return new Response(JSON.stringify(courses));
+  const questions = await questionService.findCourseQuestions(searchParams.c_id);
+  return new Response(JSON.stringify(questions));
+}
+
+const handlePostCourseQuestionAnswers = async (request) => {
+  const searchParams = await request.json();
+  const answers = await questionService.findCourseQuestionAnswers(searchParams.c_id, searchParams.q_id);
+  return new Response(JSON.stringify(answers));
 }
 
 const urlMapping = [
@@ -30,6 +35,11 @@ const urlMapping = [
       pattern: new URLPattern({pathname: "/questions"}),
       fn: handlePostCourseQuestions,
   },
+  {
+    method: "POST",
+    pattern: new URLPattern({pathname: "/answers"}),
+    fn: handlePostCourseQuestionAnswers,
+},
 ];
 
 const handleRequest = async (request) => {

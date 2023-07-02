@@ -15,9 +15,12 @@
     <p>Course Questions from Database: {questions[0].title}</p>
     <p>{typeof questions}</p>
     {#each questions as question, i}
-        <Question question={question.title} courseNumber={courseNumber} questionNumber={i+1}/>
+        <Question question={question.title + " " + question.question_content} courseNumber={courseNumber} questionNumber={i+1}/>
     {/each}
 {/await}
+
+<p>------------------------------------</p>
+<p>Placeholder style stuff</p>
 {#each questions as question, i}
     <Question question={question} courseNumber={courseNumber} questionNumber={i+1}/>
 {/each}
