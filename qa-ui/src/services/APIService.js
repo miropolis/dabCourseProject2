@@ -1,0 +1,1 @@
+// TODO put all api calls here with try error block and alternative display return
