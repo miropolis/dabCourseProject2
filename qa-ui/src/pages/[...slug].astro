@@ -1,0 +1,38 @@
+---
+import Layout from "../layout/Layout.astro";
+import AbstractQuestionsAnswers from "../components/AbstractQuestionsAnswers.svelte"
+/*const pages = [
+{
+    slug: 'course-1',
+    title: 'Course 1',
+    text: 'This is the page for course 1',
+  },
+  {
+    slug: 'course-2',
+    title: 'Course 2',
+    text: 'This is the page for course 2',
+  },
+  {
+    slug: 'course-1/question-1',
+    title: 'Course 1 - Question 1',
+    text: 'The first question of course 1',
+  }
+];*/
+let componentType = "questions"
+const { slug } = Astro.params;
+// TODO change condition
+if (slug.length > 8) {
+    componentType = "answers"
+}
+/*const page = pages.find((page) => page.slug === slug);
+if (!page) return Astro.redirect("/404");
+const { title, text } = page;*/
+const slugNumber = slug.substring(7,8);
+---
+
+<Layout>
+
+  <h1 class="bg-red-300">Slug: {slug} (from [...slug].astro</h1>
+  <AbstractQuestionsAnswers componentType={componentType} courseNumber={slugNumber} client:only={"svelte"} />
+
+</Layout>
