@@ -18,7 +18,7 @@
         answerTitle = answerContent = "";
     };
     const postAnswer = async () => {
-        await setCourseQuestionAnswer(courseNumber, questionID, answerTitle, answerContent);
+        await setCourseQuestionAnswer(questionID, answerTitle, answerContent);
         answerTitle = answerContent = "";
         isModalVisible = false;
         dispatch('change');

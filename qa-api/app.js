@@ -43,7 +43,7 @@ const handleSetCourseQuestion = async (request) => {
 
 const handleSetCourseQuestionAnswer = async (request) => {
   const params = await request.json();
-  const createdQuestion = await questionService.writeCourseQuestionAnswer(params.c_id, params.q_id, params.a_title, params.a_content);
+  const createdQuestion = await questionService.writeCourseQuestionAnswer(params.q_id, params.a_title, params.a_content);
   return new Response(JSON.stringify(createdQuestion));
 }
 

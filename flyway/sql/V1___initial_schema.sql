@@ -13,7 +13,6 @@ CREATE TABLE questions (
 
 CREATE TABLE answers (
     id SERIAL PRIMARY KEY,
-    course_id INTEGER REFERENCES courses(id),
     question_id INTEGER REFERENCES questions(id),
     title TEXT NOT NULL,
     answer_content TEXT NOT NULL,
