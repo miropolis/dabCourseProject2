@@ -8,4 +8,8 @@ const findCourseQuestionAnswers = async (c_id, q_id) => {
   return await sql`SELECT * FROM answers WHERE course_id = ${c_id} AND question_id = ${q_id};`;
 };
 
-export { findCourseQuestions, findCourseQuestionAnswers };
+const writeCourseQuestion = async (c_id, q_title, q_content) => {
+  return await sql`INSERT INTO questions (course_id, title, question_content) VALUES (${c_id}, ${q_title}, ${q_content});`
+};
+
+export { findCourseQuestions, findCourseQuestionAnswers, writeCourseQuestion };

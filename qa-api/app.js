@@ -17,29 +17,40 @@ import * as questionService from "./services/questionService.js";
 
 // TODO Put all handlers in separate files
 
-const handlePostCourseQuestions = async (request) => {
+const handleGetCourseQuestions = async (request) => {
   const searchParams = await request.json();
   const questions = await questionService.findCourseQuestions(searchParams.c_id);
   return new Response(JSON.stringify(questions));
 }
 
-const handlePostCourseQuestionAnswers = async (request) => {
+const handleGetCourseQuestionAnswers = async (request) => {
   const searchParams = await request.json();
   const answers = await questionService.findCourseQuestionAnswers(searchParams.c_id, searchParams.q_id);
   return new Response(JSON.stringify(answers));
 }
 
+const handleSetCourseQuestion = async (request) => {
+  const params = await request.json();
+  const createdQuestion = await questionService.writeCourseQuestion(params.c_id, params.q_title, params.q_content);
+  return new Response(JSON.stringify(createdQuestion));
+}
+
 const urlMapping = [
   {
-      method: "POST",
-      pattern: new URLPattern({pathname: "/questions"}),
-      fn: handlePostCourseQuestions,
+    method: "POST",
+    pattern: new URLPattern({pathname: "/questions"}),
+    fn: handleGetCourseQuestions,
   },
   {
     method: "POST",
     pattern: new URLPattern({pathname: "/answers"}),
-    fn: handlePostCourseQuestionAnswers,
-},
+    fn: handleGetCourseQuestionAnswers,
+  },
+  {
+    method: "POST",
+    pattern: new URLPattern({pathname: "/post-question"}),
+    fn: handleSetCourseQuestion,
+  },
 ];
 
 const handleRequest = async (request) => {

@@ -1,6 +1,7 @@
 <script>
     export let courseNumber;
     import Question from "./Question.svelte";
+    import PostQuestionButtonModal from "./PostQuestionButtonModal.svelte";
     import { getCourseQuestions } from "../services/APIService";
     let questions = ["Question 1", "Question 2", "Question 3", "Question 4", "Question 5", ];
 
@@ -9,6 +10,9 @@
 
 <span class="float-right p-2 border border-gray-300"><a href="/">Go back to course selection</a></span>
 <h1 class="text-3xl font-bold mb-4">Course {courseNumber}</h1>
+<div>
+    <PostQuestionButtonModal courseNumber={courseNumber}/>
+</div>
 {#await questionsPromise}
     <p>Loading questions</p>
 {:then questions}
