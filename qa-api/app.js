@@ -41,6 +41,12 @@ const handleSetCourseQuestion = async (request) => {
   return new Response(JSON.stringify(createdQuestion));
 }
 
+const handleSetCourseQuestionAnswer = async (request) => {
+  const params = await request.json();
+  const createdQuestion = await questionService.writeCourseQuestionAnswer(params.c_id, params.q_id, params.a_title, params.a_content);
+  return new Response(JSON.stringify(createdQuestion));
+}
+
 const urlMapping = [
   {
     method: "POST",
@@ -61,6 +67,11 @@ const urlMapping = [
     method: "POST",
     pattern: new URLPattern({pathname: "/post-question"}),
     fn: handleSetCourseQuestion,
+  },
+  {
+    method: "POST",
+    pattern: new URLPattern({pathname: "/post-answer"}),
+    fn: handleSetCourseQuestionAnswer,
   },
 ];
 
