@@ -3,9 +3,14 @@
     import Answer from "./Answer.svelte";
     import PostAnswerButtonModal from "./PostAnswerButtonModal.svelte";
     import { getCourseQuestionAnswers, getQuestion } from "../services/APIService";
-    import Question from "./Question.svelte";
     let questionPromise = getQuestion(questionID);
     let answersPromise = getCourseQuestionAnswers(questionID);
+
+    const handleAddedAnswer = () => {
+        // TODO Decide if reload all answers, load answer by ID or jut pass answer props through Event
+        console.log("AnswerList.svelte has gotten an update!");
+        answersPromise = getCourseQuestionAnswers(questionID);
+    };
 
     // TODO Reuse the Question.svelte component instead of the <div> with spans?
 </script>
@@ -21,7 +26,7 @@
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{questions[0].title}</h5>
     <p class="font-normal text-gray-700">{questions[0].question_content}</p>
 </div>
-<PostAnswerButtonModal courseNumber={questions[0].course_id} questionID={questionID} />
+<PostAnswerButtonModal on:change={handleAddedAnswer} courseNumber={questions[0].course_id} questionID={questionID} />
 {/await}
 
 {#await answersPromise}

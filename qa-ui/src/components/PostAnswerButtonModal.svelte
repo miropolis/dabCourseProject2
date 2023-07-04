@@ -2,6 +2,9 @@
     export let courseNumber;
     export let questionID;
     import { setCourseQuestionAnswer } from "../services/APIService";
+    import { createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
 
     let isModalVisible = false;
     let answerTitle = "";
@@ -18,6 +21,7 @@
         await setCourseQuestionAnswer(courseNumber, questionID, answerTitle, answerContent);
         answerTitle = answerContent = "";
         isModalVisible = false;
+        dispatch('change');
     };
 
 </script>
