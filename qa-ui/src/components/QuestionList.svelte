@@ -24,6 +24,6 @@
         <p>There are no questions for this course yet. Feel free to start asking!</p>
     {/if}
     {#each questions as question, i}
-        <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} courseNumber={courseNumber} questionID={question.id}/>
+        <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} questionID={question.id}/>
     {/each}
 {/await}

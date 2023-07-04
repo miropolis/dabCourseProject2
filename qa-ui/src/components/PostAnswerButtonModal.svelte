@@ -1,5 +1,4 @@
 <script>
-    export let courseNumber;
     export let questionID;
     import { setCourseQuestionAnswer } from "../services/APIService";
     import { createEventDispatcher } from 'svelte';

@@ -1,5 +1,6 @@
 import { serve } from "./deps.js";
 import * as questionService from "./services/questionService.js";
+import * as upvoteService from "./services/upvoteService.js";
 
 /*const handleRequest = async (request) => {
   const data = await request.json();
@@ -47,6 +48,51 @@ const handleSetCourseQuestionAnswer = async (request) => {
   return new Response(JSON.stringify(createdQuestion));
 }
 
+const handleGetUpvoteCount = async (request) => {
+  const params = await request.json();
+  let upvoteCount;
+  if (params.isQuestion) {
+    upvoteCount = await upvoteService.findQuestionUpvoteCount(params.q_a_id);
+  } else {
+    upvoteCount = await upvoteService.findAnswerUpvoteCount(params.q_a_id);
+  };
+  return new Response(JSON.stringify(upvoteCount));
+}
+
+const handleGetUserUpvoted = async (request) => {
+  const params = await request.json();
+  let userUpvoted;
+  if (params.isQuestion) {
+    userUpvoted = await upvoteService.findQuestionUserUpvoted(params.q_a_id, params.user_uuid);
+  } else {
+    userUpvoted = await upvoteService.findAnswerUserUpvoted(params.q_a_id, params.user_uuid);
+  };
+  return new Response(JSON.stringify(userUpvoted));
+}
+
+const handleSetUpvoteChange = async (request) => {
+  const params = await request.json();
+  if (params.isQuestion) {
+    if (params.isUpvoted) {
+      // isUpvoted is true -> delete upvote record
+      await upvoteService.deleteQuestionUpvote(params.q_a_id, params.user_uuid);
+    } else {
+      // isUpvoted is false -> add upvote record
+      await upvoteService.writeQuestionUpvote(params.q_a_id, params.user_uuid);
+    };
+  } else {
+    if (params.isUpvoted) {
+      await upvoteService.deleteAnswerUpvote(params.q_a_id, params.user_uuid);
+    } else {
+      await upvoteService.writeAnswerUpvote(params.q_a_id, params.user_uuid);
+    };
+  };
+  const data = {
+    feedback: "Upvote changed successfully!",
+  };
+  return Response.json(data);
+}
+
 const urlMapping = [
   {
     method: "POST",
@@ -72,6 +118,21 @@ const urlMapping = [
     method: "POST",
     pattern: new URLPattern({pathname: "/post-answer"}),
     fn: handleSetCourseQuestionAnswer,
+  },
+  {
+    method: "POST",
+    pattern: new URLPattern({pathname: "/upvote-count"}),
+    fn: handleGetUpvoteCount,
+  },
+  {
+    method: "POST",
+    pattern: new URLPattern({pathname: "/user-upvoted"}),
+    fn: handleGetUserUpvoted,
+  },
+  {
+    method: "POST",
+    pattern: new URLPattern({pathname: "/set-user-upvote"}),
+    fn: handleSetUpvoteChange,
   },
 ];
 

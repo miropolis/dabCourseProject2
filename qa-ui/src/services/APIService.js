@@ -62,4 +62,40 @@ const getCourseQuestionAnswers = async (q_id) => {
     return await response.json();
 };
 
-export { getQuestion, getCourseQuestions, getCourseQuestionAnswers, setCourseQuestion, setCourseQuestionAnswer };
+const getUpvoteCount = async (isQuestion, q_a_id) => {
+    const data = { isQuestion: isQuestion, q_a_id: q_a_id };
+    const response = await fetch("/api/upvote-count", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    return await response.json();
+};
+
+const getHasUserUpvoted = async (isQuestion, q_a_id, user_uuid) => {
+    const data = { isQuestion: isQuestion, q_a_id: q_a_id, user_uuid: user_uuid };
+    const response = await fetch("/api/user-upvoted", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    return await response.json();
+};
+
+const setUpvoteChange = async (isQuestion, isUpvoted, q_a_id, user_uuid) => {
+    const data = { isQuestion: isQuestion, isUpvoted: isUpvoted, q_a_id: q_a_id, user_uuid: user_uuid };
+    const response = await fetch("/api/set-user-upvote", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    return await response.json();
+};
+
+export { getQuestion, getCourseQuestions, getCourseQuestionAnswers, getUpvoteCount, setCourseQuestion, setCourseQuestionAnswer, getHasUserUpvoted, setUpvoteChange };
