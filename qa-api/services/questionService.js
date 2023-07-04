@@ -5,11 +5,11 @@ const findQuestion = async (q_id) => {
 };
 
 const findCourseQuestions = async (c_id) => {
-  return await sql`SELECT * FROM questions WHERE course_id = ${c_id};`;
+  return await sql`SELECT * FROM questions WHERE course_id = ${c_id} ORDER BY posted DESC;`;
 };
 
 const findCourseQuestionAnswers = async (q_id) => {
-  return await sql`SELECT * FROM answers WHERE question_id = ${q_id};`;
+  return await sql`SELECT * FROM answers WHERE question_id = ${q_id} ORDER BY posted DESC;`;
 };
 
 const writeCourseQuestion = async (c_id, q_title, q_content) => {
