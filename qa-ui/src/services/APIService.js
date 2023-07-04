@@ -1,5 +1,17 @@
 // TODO put all api calls here with TRY ERROR BLOCKS and alternative display return
 
+const getQuestion = async (q_id) => {
+    const data = { q_id: q_id };
+    const response = await fetch("/api/question", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    return await response.json();
+};
+
 const getCourseQuestions = async (c_id) => {
     const data = { c_id: c_id };
     const response = await fetch("/api/questions", {
@@ -25,8 +37,8 @@ const setCourseQuestion = async (c_id, q_title, q_content) => {
     return await response.json();
 };
 
-const getCourseQuestionAnswers = async (c_id, q_id) => {
-    const data = { c_id: c_id, q_id: q_id };
+const getCourseQuestionAnswers = async (q_id) => {
+    const data = { q_id: q_id };
     const response = await fetch("/api/answers", {
         method: "POST",
         headers: {
@@ -37,4 +49,4 @@ const getCourseQuestionAnswers = async (c_id, q_id) => {
     return await response.json();
 };
 
-export { getCourseQuestions, getCourseQuestionAnswers, setCourseQuestion };
+export { getQuestion, getCourseQuestions, getCourseQuestionAnswers, setCourseQuestion };

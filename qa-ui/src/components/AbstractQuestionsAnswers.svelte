@@ -17,6 +17,6 @@
     <QuestionList courseNumber={courseNumber} />
 {/if}
 {#if componentType==="answers"}
-    <AnswerList courseNumber={courseNumber} questionNumber={questionNumber}/>
+    <AnswerList courseNumber={courseNumber} questionID={questionNumber}/>
 {/if}
 

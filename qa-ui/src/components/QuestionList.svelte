@@ -17,12 +17,6 @@
     <p>Loading questions</p>
 {:then questions}
     {#each questions as question, i}
-        <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} courseNumber={courseNumber} questionNumber={i+1}/>
+        <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} courseNumber={courseNumber} questionID={question.id}/>
     {/each}
 {/await}
-
-<p>------------------------------------</p>
-<p>Placeholder style stuff</p>
-{#each questions as question, i}
-    <Question questionTitle={question} questionContent="blank" courseNumber={courseNumber} questionNumber={i+1}/>
-{/each}

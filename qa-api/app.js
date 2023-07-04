@@ -17,6 +17,12 @@ import * as questionService from "./services/questionService.js";
 
 // TODO Put all handlers in separate files
 
+const handleGetQuestion = async (request) => {
+  const searchParams = await request.json();
+  const questions = await questionService.findQuestion(searchParams.q_id);
+  return new Response(JSON.stringify(questions));
+}
+
 const handleGetCourseQuestions = async (request) => {
   const searchParams = await request.json();
   const questions = await questionService.findCourseQuestions(searchParams.c_id);
@@ -25,7 +31,7 @@ const handleGetCourseQuestions = async (request) => {
 
 const handleGetCourseQuestionAnswers = async (request) => {
   const searchParams = await request.json();
-  const answers = await questionService.findCourseQuestionAnswers(searchParams.c_id, searchParams.q_id);
+  const answers = await questionService.findCourseQuestionAnswers(searchParams.q_id);
   return new Response(JSON.stringify(answers));
 }
 
@@ -36,6 +42,11 @@ const handleSetCourseQuestion = async (request) => {
 }
 
 const urlMapping = [
+  {
+    method: "POST",
+    pattern: new URLPattern({pathname: "/question"}),
+    fn: handleGetQuestion,
+  },
   {
     method: "POST",
     pattern: new URLPattern({pathname: "/questions"}),
