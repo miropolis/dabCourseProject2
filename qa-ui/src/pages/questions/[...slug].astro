@@ -3,6 +3,7 @@ import Layout from "../../layout/Layout.astro";
 import AnswerList from "../../components/AnswerList.svelte"
 
 const { slug } = Astro.params;
+// TODO this should be substring from 0 to the next / and then append quetsion title
 const questionID = slug.substring(0);
 ---
 

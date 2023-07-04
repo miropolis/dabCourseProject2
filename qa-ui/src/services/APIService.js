@@ -37,6 +37,10 @@ const setCourseQuestion = async (c_id, q_title, q_content) => {
     return await response.json();
 };
 
+const setCourseQuestionAnswer = async (c_id, q_id, a_title, a_content) => {
+    console.log("setCourseQuestionAnswer in UI triggered with params: " + c_id + q_id + a_title + a_content);
+};
+
 const getCourseQuestionAnswers = async (q_id) => {
     const data = { q_id: q_id };
     const response = await fetch("/api/answers", {
@@ -49,4 +53,4 @@ const getCourseQuestionAnswers = async (q_id) => {
     return await response.json();
 };
 
-export { getQuestion, getCourseQuestions, getCourseQuestionAnswers, setCourseQuestion };
+export { getQuestion, getCourseQuestions, getCourseQuestionAnswers, setCourseQuestion, setCourseQuestionAnswer };

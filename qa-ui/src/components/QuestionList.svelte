@@ -15,6 +15,9 @@
 {#await questionsPromise}
     <p>Loading questions</p>
 {:then questions}
+    {#if questions.length === 0}
+        <p>There are no questions for this course yet. Feel free to start asking!</p>
+    {/if}
     {#each questions as question, i}
         <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} courseNumber={courseNumber} questionID={question.id}/>
     {/each}
