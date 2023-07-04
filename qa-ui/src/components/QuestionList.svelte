@@ -7,20 +7,18 @@
     let questionsPromise = getCourseQuestions(courseNumber);
 </script>
 
-<h1 class="text-3xl font-bold">Course {courseNumber}</h1>
-<p><a href="/">Go back to course selection</a></p>
+<span class="float-right p-2 border border-gray-300"><a href="/">Go back to course selection</a></span>
+<h1 class="text-3xl font-bold mb-4">Course {courseNumber}</h1>
 {#await questionsPromise}
     <p>Loading questions</p>
 {:then questions}
-    <p>Course Questions from Database: {questions[0].title}</p>
-    <p>{typeof questions}</p>
     {#each questions as question, i}
-        <Question question={question.title + " " + question.question_content} courseNumber={courseNumber} questionNumber={i+1}/>
+        <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} courseNumber={courseNumber} questionNumber={i+1}/>
     {/each}
 {/await}
 
 <p>------------------------------------</p>
 <p>Placeholder style stuff</p>
 {#each questions as question, i}
-    <Question question={question} courseNumber={courseNumber} questionNumber={i+1}/>
+    <Question questionTitle={question} questionContent="blank" courseNumber={courseNumber} questionNumber={i+1}/>
 {/each}

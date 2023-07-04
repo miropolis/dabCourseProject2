@@ -20,6 +20,8 @@ CREATE TABLE answers (
     posted TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+/* TODO Add user uuid to questions and answer relations */
+
 /* TODO Create upvote relations */
 
 /* TODO Create meaningful indexes */
