@@ -19,8 +19,18 @@ CREATE TABLE answers (
     posted TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
-/* TODO Add user uuid to questions and answer relations */
+CREATE TABLE question_upvotes (
+    id SERIAL PRIMARY KEY,
+    question_id INTEGER REFERENCES questions(id),
+    user_uuid TEXT NOT NULL
+);
 
-/* TODO Create upvote relations */
+CREATE TABLE answer_upvotes (
+    id SERIAL PRIMARY KEY,
+    answer_id INTEGER REFERENCES answers(id),
+    user_uuid TEXT NOT NULL
+);
+
+/* TODO Add user uuid to questions and answer relations */
 
 /* TODO Create meaningful indexes */

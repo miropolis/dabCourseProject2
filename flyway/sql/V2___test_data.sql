@@ -11,3 +11,17 @@ INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'My first an
 INSERT INTO answers (question_id, title, answer_content) VALUES (2, 'My second answer', 'This is the content of the answer from database');
 INSERT INTO answers (question_id, title, answer_content) VALUES (3, 'My first answer', 'This is the content of the answer from database');
 INSERT INTO answers (question_id, title, answer_content) VALUES (4, 'My second answer', 'This is the content of the answer from database');
+
+
+INSERT INTO question_upvotes (question_id, user_uuid) VALUES (1, 'database-user-1');
+INSERT INTO question_upvotes (question_id, user_uuid) VALUES (1, 'database-user-2');
+INSERT INTO question_upvotes (question_id, user_uuid) VALUES (1, 'database-user-3');
+
+INSERT INTO question_upvotes (question_id, user_uuid) VALUES (2, 'database-user-1');
+INSERT INTO question_upvotes (question_id, user_uuid) VALUES (2, 'database-user-2');
+
+INSERT INTO question_upvotes (question_id, user_uuid) VALUES (3, 'database-user-1');
+
+INSERT INTO answer_upvotes (answer_id, user_uuid) VALUES (1, 'database-user-1');
+INSERT INTO answer_upvotes (answer_id, user_uuid) VALUES (2, 'database-user-1');
+INSERT INTO answer_upvotes (answer_id, user_uuid) VALUES (3, 'database-user-1');
