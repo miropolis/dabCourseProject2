@@ -1,13 +1,15 @@
 ---
 import Layout from "../layout/Layout.astro";
 import AbstractQuestionsAnswers from "../components/AbstractQuestionsAnswers.svelte"
+import QuestionList from "../components/QuestionList.svelte";
 
 const { slug } = Astro.params;
+const courseNumber = slug.substring(7,8);
 ---
 
 <Layout>
 
-  <h1 class="bg-red-300">Slug: {slug} (from [...slug].astro</h1>
-  <AbstractQuestionsAnswers slug={slug} client:only={"svelte"} />
+  <h1 class="bg-red-300">Slug: {slug} (from [...slug].astro and courseNumber: {courseNumber}</h1>
+  <QuestionList courseNumber={courseNumber} client:only={"svelte"} />
 
 </Layout>

@@ -1,0 +1,14 @@
+---
+import Layout from "../../layout/Layout.astro";
+import AnswerList from "../../components/AnswerList.svelte"
+
+const { slug } = Astro.params;
+const questionID = slug.substring(0);
+---
+
+<Layout>
+
+  <h1 class="bg-red-300">Slug from questions/...: {slug} (from [...slug].astro AND questionID: {questionID}</h1>
+  <AnswerList questionID={slug} client:only={"svelte"} />
+
+</Layout>

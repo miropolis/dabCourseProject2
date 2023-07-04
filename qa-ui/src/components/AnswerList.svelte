@@ -1,16 +1,13 @@
 <script>
-    export let courseNumber;
     export let questionID;
     import Answer from "./Answer.svelte";
     import { getCourseQuestionAnswers, getQuestion } from "../services/APIService";
     let questionPromise = getQuestion(questionID);
     let answersPromise = getCourseQuestionAnswers(questionID);
-    let answers = ["Answer 1", "Answer 2", ];
 
     // TODO Reuse the Question.svelte component instead of the <div> with spans?
 </script>
 
-<a class="bg-blue-300" href={"/course-" + courseNumber}>Go back to all questions</a>
 {#await questionPromise}
     <p>Loading answers</p>
 {:then questions}

@@ -66,7 +66,7 @@ const urlMapping = [
 
 const handleRequest = async (request) => {
   const mapping = urlMapping.find((um) => um.method === request.method && um.pattern.test(request.url));
-
+  console.log("Request to api/app.js with request url: " + request.url + " and request method: " + request.method);
   if (!mapping) return new Response("Not found", {status: 404});
 
   const mappingResult = mapping.pattern.exec(request.url);

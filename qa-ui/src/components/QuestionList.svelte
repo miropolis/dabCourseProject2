@@ -3,7 +3,6 @@
     import Question from "./Question.svelte";
     import PostQuestionButtonModal from "./PostQuestionButtonModal.svelte";
     import { getCourseQuestions } from "../services/APIService";
-    let questions = ["Question 1", "Question 2", "Question 3", "Question 4", "Question 5", ];
 
     let questionsPromise = getCourseQuestions(courseNumber);
 </script>
