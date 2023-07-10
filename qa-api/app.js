@@ -2,20 +2,6 @@ import { serve } from "./deps.js";
 import * as questionService from "./services/questionService.js";
 import * as upvoteService from "./services/upvoteService.js";
 
-/*const handleRequest = async (request) => {
-  const data = await request.json();
-
-  const response = await fetch("http://llm-api:7000/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  return response;
-};*/
-
 // TODO Put all handlers in separate files
 
 const handleGetQuestion = async (request) => {
@@ -93,7 +79,20 @@ const handleSetUpvoteChange = async (request) => {
     feedback: "Upvote changed successfully!",
   };
   return Response.json(data);
-}
+};
+
+const handleLLM = async (request) => {
+  const data = await request.json();
+
+  const response = await fetch("http://llm-api:7000/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response;
+};
 
 const urlMapping = [
   {
@@ -135,6 +134,11 @@ const urlMapping = [
     method: "POST",
     pattern: new URLPattern({pathname: "/set-user-upvote"}),
     fn: handleSetUpvoteChange,
+  },
+  {
+    method: "POST",
+    pattern: new URLPattern({pathname: "/llm"}),
+    fn: handleLLM,
   },
 ];
 
