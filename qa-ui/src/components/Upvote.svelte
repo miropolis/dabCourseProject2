@@ -13,7 +13,6 @@
 
     let hasUserUpvotedPromise = getHasUserUpvoted(isQuestion, q_a_id, $userUuid);
     hasUserUpvotedPromise.then((value) => {
-        console.log("hasUserUpvoted Resolved Promise: " + value + value.length)
         if (value.length > 0) {
             isUpvoted = true
         };
@@ -21,7 +20,6 @@
 
     const pressUpvote = async () => {
         await setUpvoteChange(isQuestion, isUpvoted, q_a_id, $userUuid);
-        console.log("Upvote button pressed. upvoteCount: " + upvoteCount);
         if (isUpvoted) {
             isUpvoted = false;
             upvoteCount--;

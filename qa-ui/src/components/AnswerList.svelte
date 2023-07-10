@@ -8,7 +8,6 @@
 
     const handleAddedAnswer = () => {
         // TODO Decide if reload all answers, load answer by ID or jut pass answer props through Event
-        console.log("AnswerList.svelte has gotten an update!");
         answersPromise = getCourseQuestionAnswers(questionID);
     };
 

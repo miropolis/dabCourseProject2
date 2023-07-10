@@ -73,6 +73,7 @@ const handleGetUserUpvoted = async (request) => {
 const handleSetUpvoteChange = async (request) => {
   const params = await request.json();
   if (params.isQuestion) {
+    await questionService.writeQuestionUpdate(params.q_a_id);
     if (params.isUpvoted) {
       // isUpvoted is true -> delete upvote record
       await upvoteService.deleteQuestionUpvote(params.q_a_id, params.user_uuid);
@@ -81,6 +82,7 @@ const handleSetUpvoteChange = async (request) => {
       await upvoteService.writeQuestionUpvote(params.q_a_id, params.user_uuid);
     };
   } else {
+    await questionService.writeAnswerUpdate(params.q_a_id);
     if (params.isUpvoted) {
       await upvoteService.deleteAnswerUpvote(params.q_a_id, params.user_uuid);
     } else {

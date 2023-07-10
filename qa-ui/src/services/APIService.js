@@ -38,7 +38,6 @@ const setCourseQuestion = async (c_id, q_title, q_content) => {
 };
 
 const setCourseQuestionAnswer = async (q_id, a_title, a_content) => {
-    console.log("setCourseQuestionAnswer in UI triggered with params: " + q_id + a_title + a_content);
     const data = { q_id: q_id, a_title: a_title, a_content: a_content }
     const response = await fetch("/api/post-answer", {
         method: "POST",

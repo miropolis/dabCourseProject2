@@ -6,7 +6,6 @@
 
     let questionsPromise = getCourseQuestions(courseNumber);
     const handleAddedQuestion = () => {
-        console.log("AnswerList.svelte has gotten an update!");
         questionsPromise = getCourseQuestions(courseNumber);
     };
     

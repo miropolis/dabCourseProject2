@@ -20,4 +20,12 @@ const writeCourseQuestionAnswer = async (q_id, q_title, q_content) => {
   return await sql`INSERT INTO answers (question_id, title, answer_content) VALUES (${q_id}, ${q_title}, ${q_content});`
 };
 
-export { findQuestion, findCourseQuestions, findCourseQuestionAnswers, writeCourseQuestion, writeCourseQuestionAnswer };
+const writeQuestionUpdate = async (q_id) => {
+  return await sql`UPDATE questions SET posted = DEFAULT WHERE id = ${q_id}`
+};
+
+const writeAnswerUpdate = async (a_id) => {
+  return await sql`UPDATE answers SET posted = DEFAULT WHERE id = ${a_id}`
+};
+
+export { findQuestion, findCourseQuestions, findCourseQuestionAnswers, writeCourseQuestion, writeCourseQuestionAnswer, writeQuestionUpdate, writeAnswerUpdate };

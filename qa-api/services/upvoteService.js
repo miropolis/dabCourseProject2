@@ -21,7 +21,7 @@ const writeQuestionUpvote = async (q_id, user_uuid) => {
 };
 
 const writeAnswerUpvote = async (a_id, user_uuid) => {
-return await sql`INSERT INTO answer_upvotes (answer_id, user_uuid) VALUES (${a_id}, ${user_uuid});`
+    return await sql`INSERT INTO answer_upvotes (answer_id, user_uuid) VALUES (${a_id}, ${user_uuid});`
 };
 
 const deleteQuestionUpvote = async (q_id, user_uuid) => {
