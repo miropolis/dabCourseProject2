@@ -16,8 +16,8 @@ const writeCourseQuestion = async (c_id, q_title, q_content) => {
   return await sql`INSERT INTO questions (course_id, title, question_content) VALUES (${c_id}, ${q_title}, ${q_content}) RETURNING id;`
 };
 
-const writeCourseQuestionAnswer = async (q_id, q_title, q_content) => {
-  return await sql`INSERT INTO answers (question_id, title, answer_content) VALUES (${q_id}, ${q_title}, ${q_content});`
+const writeCourseQuestionAnswer = async (q_id, a_title, a_content) => {
+  return await sql`INSERT INTO answers (question_id, title, answer_content) VALUES (${q_id}, ${a_title}, ${a_content});`
 };
 
 const writeQuestionUpdate = async (q_id) => {

@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/")
 async def main():
-    return "POST a message with a JSON document that has a 'question' key."
+    return "POST a message with a JSON document that has a 'question' key. Test"
 
 @app.post("/")
 async def ask_question(request: Request):
