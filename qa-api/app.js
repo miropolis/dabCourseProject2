@@ -1,8 +1,27 @@
-import { serve } from "./deps.js";
+import { serve, connect } from "./deps.js";
 import * as questionService from "./services/questionService.js";
 import * as upvoteService from "./services/upvoteService.js";
 
 // TODO Put all handlers in separate files
+
+const redis = await connect({
+  hostname: "redis",
+  port: 6379,
+});
+
+// Create Redis Consumer Group and stream on startup (if it doesn't exist yet)
+try {
+  const redisInfo = await redis.xinfoGroups("grading-stream");
+  console.log(redisInfo[0].name);
+} catch (e) {
+  console.log("Looks like grading-stream does not exist yet. Creating it and the consumer group now...");
+  await redis.xgroupCreate(
+    "grading-stream",
+    "Redis-Grader-Group",
+    0, //what message to serve next at the first consumer connecting, that is, what was the last message ID when the group was just created. If we provide $ as we did, then only new messages arriving in the stream from now on will be provided to the consumers in the group. If we specify 0 instead the consumer group will consume all the messages in the stream history to start with. 
+    true, //mkstream true, creates the stream if it doesn't exist
+  );
+};
 
 const handleGetQuestion = async (request) => {
   const searchParams = await request.json();
@@ -25,6 +44,22 @@ const handleGetCourseQuestionAnswers = async (request) => {
 const handleSetCourseQuestion = async (request) => {
   const params = await request.json();
   const createdQuestion = await questionService.writeCourseQuestion(params.c_id, params.q_title, params.q_content);
+  await redis.xadd(
+    "grading-stream",
+    "*", // let redis assign message ID
+    { q_id: createdQuestion[0].id, q_title: params.q_title },
+  );
+  await redis.xadd(
+    "grading-stream",
+    "*", // let redis assign message ID
+    { q_id: createdQuestion[0].id, q_title: params.q_title },
+  );
+  await redis.xadd(
+    "grading-stream",
+    "*", // let redis assign message ID
+    { q_id: createdQuestion[0].id, q_title: params.q_title },
+  );
+
   return new Response(JSON.stringify(createdQuestion));
 }
 
