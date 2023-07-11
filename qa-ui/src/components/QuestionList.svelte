@@ -54,20 +54,9 @@
     <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} questionID={question.id}/>
 {/each}
 
-<!-- {#await questionsPromise}
-    <p>Loading questions</p>
-{:then questions}
-    {#if questions.length === 0}
-        <p>There are no questions for this course yet. Feel free to start asking!</p>
-    {/if}
-    {#each questions as question, i}
-        <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} questionID={question.id}/>
-    {/each}
-
-{/await} -->
 {#if resolved}
-<p use:viewport
-    on:enterViewport={() => loadMoreQuestions()}
-    on:exitViewport={() => console.log('exit!')}
-></p>
+    <p use:viewport
+        on:enterViewport={() => loadMoreQuestions()}
+        on:exitViewport={() => console.log('exit!')}
+    ></p>
 {/if}
