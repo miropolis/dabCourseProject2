@@ -57,7 +57,8 @@
 <span class="float-right p-2 border border-gray-300"><a href="/">Go back to course selection</a></span>
 <h1 class="text-3xl font-bold mb-4">Course {courseNumber}</h1>
 <div>
-    <PostQuestionButtonModal on:change={handleAddedQuestion} courseNumber={courseNumber}/>
+    <!-- Removed on:change{handleAddedQuestion} because it is updated by SSE -->
+    <PostQuestionButtonModal courseNumber={courseNumber}/>
 </div>
 
 {#each questions as question}
