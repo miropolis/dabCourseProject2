@@ -4,3 +4,7 @@ TODO: There is a brief description of the application in REFLECTION.md that high
 ## Usability
 
 Usability and UX could be improved by adding keydown event listeners (e.g., allowing to close the modal by pressing the escape key, putting the cursor in the text field on opening the modal, and so on)
+
+## Asynchronous LLM-generated answers
+
+Uses the web worker implementation of deno
