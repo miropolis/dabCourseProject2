@@ -15,5 +15,8 @@
 		"astro": "^2.0.14",
 		"svelte": "^3.55.1",
 		"tailwindcss": "^3.2.7"
+	},
+	"devDependencies": {
+		"svelte-intersection-observer": "^0.10.0"
 	}
 }

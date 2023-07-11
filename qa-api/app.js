@@ -17,8 +17,13 @@ const handleGetQuestion = async (request) => {
 }
 
 const handleGetCourseQuestions = async (request) => {
+  let questions;
   const searchParams = await request.json();
-  const questions = await questionService.findCourseQuestions(searchParams.c_id);
+  if (searchParams.offset_number === 0) {
+    questions = await questionService.findCourseQuestions(searchParams.c_id);
+  } else {
+    questions = await questionService.findMoreCourseQuestions(searchParams.c_id, searchParams.offset_number);
+  };
   return new Response(JSON.stringify(questions));
 }
 

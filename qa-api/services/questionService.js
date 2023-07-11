@@ -8,6 +8,10 @@ const findCourseQuestions = async (c_id) => {
   return await sql`SELECT * FROM questions WHERE course_id = ${c_id} ORDER BY posted DESC LIMIT 20;`;
 };
 
+const findMoreCourseQuestions = async (c_id, offset_number) => {
+  return await sql`SELECT * FROM questions WHERE course_id = ${c_id} ORDER BY posted DESC LIMIT 20 OFFSET ${offset_number*20};`;
+};
+
 const findCourseQuestionAnswers = async (q_id) => {
   return await sql`SELECT * FROM answers WHERE question_id = ${q_id} ORDER BY posted DESC LIMIT 20;`;
 };
@@ -28,4 +32,4 @@ const writeAnswerUpdate = async (a_id) => {
   return await sql`UPDATE answers SET posted = DEFAULT WHERE id = ${a_id}`
 };
 
-export { findQuestion, findCourseQuestions, findCourseQuestionAnswers, writeCourseQuestion, writeCourseQuestionAnswer, writeQuestionUpdate, writeAnswerUpdate };
+export { findQuestion, findCourseQuestions, findMoreCourseQuestions, findCourseQuestionAnswers, writeCourseQuestion, writeCourseQuestionAnswer, writeQuestionUpdate, writeAnswerUpdate };

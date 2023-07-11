@@ -3,11 +3,44 @@
     import Question from "./Question.svelte";
     import PostQuestionButtonModal from "./PostQuestionButtonModal.svelte";
     import { getCourseQuestions } from "../services/APIService";
+    import viewport from '../services/useViewportAction';
+    import {onMount} from "svelte";
 
-    let questionsPromise = getCourseQuestions(courseNumber);
-    const handleAddedQuestion = () => {
-        questionsPromise = getCourseQuestions(courseNumber);
+    let questions = [];
+    let newBatchOfQuestions = [];
+    let offsetNumber = 1;
+    let resolved = false;
+
+    const loadFirstQuestions = async () => {
+        newBatchOfQuestions = await getCourseQuestions(courseNumber, 0);
+        console.log(newBatchOfQuestions);
+        resolved = true;
     };
+
+    const handleAddedQuestion = () => {
+        questions = [];
+        newBatchOfQuestions = [];
+        resolved = false;
+        offsetNumber = 1;
+        loadFirstQuestions();
+    };
+
+    const loadMoreQuestions = async () => {
+        console.log("Now more questions should be loaded");
+        await new Promise(r => setTimeout(r, 1000));
+        newBatchOfQuestions = await getCourseQuestions(courseNumber, offsetNumber);
+        offsetNumber++;
+    };
+
+    onMount( async () => {
+		// load first batch onMount
+        loadFirstQuestions();
+	})
+
+    $: questions = [
+		...questions,
+        ...newBatchOfQuestions
+    ];
     
 </script>
 
@@ -16,7 +49,12 @@
 <div>
     <PostQuestionButtonModal on:change={handleAddedQuestion} courseNumber={courseNumber}/>
 </div>
-{#await questionsPromise}
+
+{#each questions as question}
+    <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} questionID={question.id}/>
+{/each}
+
+<!-- {#await questionsPromise}
     <p>Loading questions</p>
 {:then questions}
     {#if questions.length === 0}
@@ -25,4 +63,11 @@
     {#each questions as question, i}
         <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} questionID={question.id}/>
     {/each}
-{/await}
+
+{/await} -->
+{#if resolved}
+<p use:viewport
+    on:enterViewport={() => loadMoreQuestions()}
+    on:exitViewport={() => console.log('exit!')}
+></p>
+{/if}

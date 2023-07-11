@@ -12,8 +12,8 @@ const getQuestion = async (q_id) => {
     return await response.json();
 };
 
-const getCourseQuestions = async (c_id) => {
-    const data = { c_id: c_id };
+const getCourseQuestions = async (c_id, offset_number) => {
+    const data = { c_id: c_id, offset_number: offset_number };
     const response = await fetch("/api/questions", {
         method: "POST",
         headers: {
