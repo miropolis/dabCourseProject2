@@ -2,6 +2,7 @@
     export let questionID;
     import { setCourseQuestionAnswer } from "../services/APIService";
     import { createEventDispatcher } from 'svelte';
+    import { userUuid } from "../stores/stores.js";
 
     const dispatch = createEventDispatcher();
 
@@ -17,10 +18,16 @@
         answerTitle = answerContent = "";
     };
     const postAnswer = async () => {
-        await setCourseQuestionAnswer(questionID, answerTitle, answerContent);
-        answerTitle = answerContent = "";
-        isModalVisible = false;
-        dispatch('change');
+        const response = await setCourseQuestionAnswer(questionID, answerTitle, answerContent, $userUuid);
+        console.log("Response from postAnswer in Modal: ", response)
+        if (response.questionAdded === false) {
+            console.log("Answer was not added!")
+            alert("Please wait " + response.seconds + " more seconds before posting a new question or answer!");
+        } else {
+            isModalVisible = false;
+            answerTitle = answerContent = "";
+            dispatch('change');
+        };
     };
 
 </script>

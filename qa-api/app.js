@@ -74,6 +74,7 @@ const handleGetCourseQuestionAnswers = async (request) => {
 const handleSetCourseQuestion = async (request) => {
   const params = await request.json();
 
+  // Check if user posted recently (less than 60 seconds)
   const responseData = await getUserPostedRecently(params.user_uuid);
   if (responseData.questionAdded === false) {
     return new Response(JSON.stringify(responseData));
@@ -89,8 +90,14 @@ const handleSetCourseQuestion = async (request) => {
 
 const handleSetCourseQuestionAnswer = async (request) => {
   const params = await request.json();
+
+  const responseData = await getUserPostedRecently(params.user_uuid);
+  if (responseData.questionAdded === false) {
+    return new Response(JSON.stringify(responseData));
+  };
   const createdAnswer = await questionService.writeCourseQuestionAnswer(params.q_id, params.a_title, params.a_content);
-  return new Response(JSON.stringify(createdAnswer));
+  // TODO send SSE update
+  return new Response(JSON.stringify(responseData));
 }
 
 const handleGetUpvoteCount = async (request) => {
