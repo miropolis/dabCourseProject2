@@ -11,6 +11,16 @@
     let offsetNumber = 1;
     let resolved = false;
 
+    // TODO onMount open eventsource, onDestroy close it
+    const eventSource = new EventSource("/api/q-a-updates");
+    eventSource.onmessage = (event) => {
+        if (event.data === "QuestionAdded") {
+            console.log(event.data);
+            // TODO handle new Question more gracefully
+            handleAddedQuestion();
+        };
+    };
+
     const loadFirstQuestions = async () => {
         newBatchOfQuestions = await getCourseQuestions(courseNumber, 0);
         console.log(newBatchOfQuestions);
@@ -57,6 +67,6 @@
 {#if resolved}
     <p use:viewport
         on:enterViewport={() => loadMoreQuestions()}
-        on:exitViewport={() => console.log('exit!')}
+        on:exitViewport={() => console.log('exit viewport!')}
     ></p>
 {/if}

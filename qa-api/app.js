@@ -3,12 +3,48 @@ import * as questionService from "./services/questionService.js";
 import * as upvoteService from "./services/upvoteService.js";
 
 // TODO Put all handlers in separate files
-
 const worker = new Worker(new URL("./services/worker.js", import.meta.url).href, { type: "module" });
 worker.onmessage = async (e) => {
   const { q_id, a_content } = e.data;
   await questionService.writeCourseQuestionAnswer(q_id, "Auto Generated Answer", a_content);
 };
+
+// start of SSE
+const encoder = new TextEncoder();
+let controllers = new Set();;
+/*setInterval(() => {
+    const msg = encoder.encode(`data: abc\n\n`);
+    controllers.forEach((controller) => controller.enqueue(msg));
+}, 1000);*/
+
+const sendUpdate = async (message) => {
+  const msg = encoder.encode(`data: ${message}\n\n`);
+  controllers.forEach((controller) => controller.enqueue(msg));
+};
+
+const handleQAUpdates = async (request) => {
+  let controller;
+  
+  const body = new ReadableStream({
+    start(c) {
+      controller = c;
+      controllers.add(controller);
+    },
+    cancel() {
+      controllers.delete(controller);
+    },
+  });
+
+  return new Response(body, {
+    headers: {
+      "Content-Type": "text/event-stream",
+      "Access-Control-Allow-Origin": "*",
+      "Connection": "keep-alive",
+    },
+  });
+};
+// End of SSE
+
 
 const handleGetQuestion = async (request) => {
   const searchParams = await request.json();
@@ -40,6 +76,7 @@ const handleSetCourseQuestion = async (request) => {
   worker.postMessage({ q_id: createdQuestion[0].id, q_title: params.q_title });
   worker.postMessage({ q_id: createdQuestion[0].id, q_title: params.q_title });
 
+  sendUpdate("QuestionAdded");
   return new Response(JSON.stringify(createdQuestion));
 }
 
@@ -154,6 +191,11 @@ const urlMapping = [
     method: "POST",
     pattern: new URLPattern({pathname: "/llm"}),
     fn: handleLLM,
+  },
+  {
+    method: "GET",
+    pattern: new URLPattern({pathname: "/q-a-updates"}),
+    fn: handleQAUpdates,
   },
 ];
 

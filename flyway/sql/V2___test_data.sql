@@ -25,6 +25,26 @@ INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q20', 'Th
 INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q21', 'This is the content of the question from database');
 INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q22', 'This is the content of the question from database');
 INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q23', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q24', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q25', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q26', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q27', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q28', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q29', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q30', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q31', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q32', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q33', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q34', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q35', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q36', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q37', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q38', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q39', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q40', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q41', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q42', 'This is the content of the question from database');
+INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q43', 'This is the content of the question from database');
 
 INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'My first answer', 'This is the content of the answer from database');
 INSERT INTO answers (question_id, title, answer_content) VALUES (2, 'My second answer', 'This is the content of the answer from database');
