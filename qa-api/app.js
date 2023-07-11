@@ -1,7 +1,8 @@
 import { serve, connect } from "./deps.js";
 import * as questionService from "./services/questionService.js";
 import * as upvoteService from "./services/upvoteService.js";
-import * as userService from "./services/userService.js"
+import * as userService from "./services/userService.js";
+import { getUserPostedRecently } from "./utils/userPostedRecentlyGetter.js";
 
 // TODO Put all handlers in separate files
 const worker = new Worker(new URL("./services/worker.js", import.meta.url).href, { type: "module" });
@@ -73,28 +74,9 @@ const handleGetCourseQuestionAnswers = async (request) => {
 const handleSetCourseQuestion = async (request) => {
   const params = await request.json();
 
-  // Check if user posted within last minute
-  const userTimeEntry = await userService.findUserPosted(params.user_uuid);
-  if(userTimeEntry.length === 0) {
-    await userService.writeUserPosted(params.user_uuid);
-  } else {
-    // User is already in database
-    const currentTime = await userService.getDatabaseTime();
-    const timeDiff = currentTime[0].now - userTimeEntry[0].posted;
-    const seconds = parseInt((timeDiff)/1000);
-    console.log(timeDiff)
-    console.log(seconds, " seconds")
-
-    if (seconds < 60) {
-      const responseData = {
-        seconds: seconds,
-        questionAdded: false,
-      };
-      return new Response(JSON.stringify(responseData));
-    } else {
-      // start new delay
-      await userService.updateUserPosted(params.user_uuid);
-    };
+  const responseData = await getUserPostedRecently(params.user_uuid);
+  if (responseData.questionAdded === false) {
+    return new Response(JSON.stringify(responseData));
   };
 
   const createdQuestion = await questionService.writeCourseQuestion(params.c_id, params.q_title, params.q_content);
@@ -102,10 +84,6 @@ const handleSetCourseQuestion = async (request) => {
   worker.postMessage({ q_id: createdQuestion[0].id, q_title: params.q_title });
   worker.postMessage({ q_id: createdQuestion[0].id, q_title: params.q_title });
   sendUpdate("QuestionAdded");
-  const responseData = {
-    seconds: 0,
-    questonAdded: true,
-  };
   return new Response(JSON.stringify(responseData));
 }
 
