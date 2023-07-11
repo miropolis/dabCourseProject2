@@ -51,7 +51,7 @@
                     Ask your question as precisely as possible. Use a meaningful title to efficiently receive guidance.
                 </p>
                 <p>Question title</p>
-                <input type="text" bind:value={questionTitle} class="border border-gray-500 rounded-lg p-1" />
+                <input id="question-title-input" type="text" bind:value={questionTitle} class="border border-gray-500 rounded-lg p-1" />
                 <p>Question text</p>
                 <textarea bind:value={questionContent} class="w-full border border-gray-500 rounded-lg p-1"></textarea>
             </div>
