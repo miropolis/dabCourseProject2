@@ -46,10 +46,32 @@ INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q41', 'Th
 INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q42', 'This is the content of the question from database');
 INSERT INTO questions (course_id, title, question_content) VALUES (1, 'Q43', 'This is the content of the question from database');
 
-INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'My first answer', 'This is the content of the answer from database');
-INSERT INTO answers (question_id, title, answer_content) VALUES (2, 'My second answer', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A1', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A2', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A3', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A4', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A5', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A6', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A7', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A8', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A9', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A10', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A11', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A12', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A13', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A14', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A15', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A16', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A17', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A18', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A19', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A20', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A21', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (1, 'A21', 'This is the content of the answer from database');
+
+INSERT INTO answers (question_id, title, answer_content) VALUES (2, 'My first answer', 'This is the content of the answer from database');
 INSERT INTO answers (question_id, title, answer_content) VALUES (3, 'My first answer', 'This is the content of the answer from database');
-INSERT INTO answers (question_id, title, answer_content) VALUES (4, 'My second answer', 'This is the content of the answer from database');
+INSERT INTO answers (question_id, title, answer_content) VALUES (4, 'My first answer', 'This is the content of the answer from database');
 
 
 INSERT INTO question_upvotes (question_id, user_uuid) VALUES (1, 'database-user-1');

@@ -37,6 +37,4 @@ CREATE TABLE user_timetable (
     posted TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 )
 
-/* TODO Add user uuid to questions and answer relations */
-
 /* TODO Create meaningful indexes */

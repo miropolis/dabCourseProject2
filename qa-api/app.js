@@ -66,8 +66,13 @@ const handleGetCourseQuestions = async (request) => {
 }
 
 const handleGetCourseQuestionAnswers = async (request) => {
+  let answers;
   const searchParams = await request.json();
-  const answers = await questionService.findCourseQuestionAnswers(searchParams.q_id);
+  if (searchParams.offset_number === 0) {
+    answers = await questionService.findCourseQuestionAnswers(searchParams.q_id);
+  } else {
+    answers = await questionService.findMoreCourseQuestionAnswers(searchParams.q_id, searchParams.offset_number);
+  };
   return new Response(JSON.stringify(answers));
 }
 
@@ -96,7 +101,7 @@ const handleSetCourseQuestionAnswer = async (request) => {
     return new Response(JSON.stringify(responseData));
   };
   const createdAnswer = await questionService.writeCourseQuestionAnswer(params.q_id, params.a_title, params.a_content);
-  // TODO send SSE update
+  sendUpdate("AnswerAdded");
   return new Response(JSON.stringify(responseData));
 }
 
