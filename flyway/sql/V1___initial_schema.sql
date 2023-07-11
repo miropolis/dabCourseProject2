@@ -31,6 +31,12 @@ CREATE TABLE answer_upvotes (
     user_uuid TEXT NOT NULL
 );
 
+CREATE TABLE user_timetable (
+    id SERIAL PRIMARY KEY,
+    user_uuid TEXT NOT NULL,
+    posted TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+)
+
 /* TODO Add user uuid to questions and answer relations */
 
 /* TODO Create meaningful indexes */

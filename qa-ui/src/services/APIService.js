@@ -24,8 +24,8 @@ const getCourseQuestions = async (c_id, offset_number) => {
     return await response.json();
 };
 
-const setCourseQuestion = async (c_id, q_title, q_content) => {
-    const data = { c_id: c_id, q_title: q_title, q_content: q_content }
+const setCourseQuestion = async (c_id, q_title, q_content, user_uuid) => {
+    const data = { c_id: c_id, q_title: q_title, q_content: q_content, user_uuid: user_uuid }
     const response = await fetch("/api/post-question", {
         method: "POST",
         headers: {
