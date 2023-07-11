@@ -8,3 +8,13 @@ Usability and UX could be improved by adding keydown event listeners (e.g., allo
 ## Asynchronous LLM-generated answers
 
 Uses the web worker implementation of deno
+
+## Production configuration
+
+### qa-ui
+
+Because I am using server side rendering in Astro it would require an adapter (e.g., Deno) for a successful build. Since we did not go into this in the course I decided to leave it running in the development mode
+
+### qa-api
+
+The web worker requires the --allow-read flag
