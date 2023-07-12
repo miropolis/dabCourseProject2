@@ -15,7 +15,6 @@
     const eventSource = new EventSource("/api/q-a-updates");
     eventSource.onmessage = (event) => {
         if (event.data === "QuestionAdded") {
-            console.log(event.data);
             // TODO handle new Question more gracefully
             handleAddedQuestion();
         };
@@ -23,7 +22,6 @@
 
     const loadFirstQuestions = async () => {
         newBatchOfQuestions = await getCourseQuestions(courseNumber, 0);
-        console.log(newBatchOfQuestions);
         resolved = true;
     };
 
@@ -36,7 +34,6 @@
     };
 
     const loadMoreQuestions = async () => {
-        console.log("Now more questions should be loaded");
         await new Promise(r => setTimeout(r, 1000));
         newBatchOfQuestions = await getCourseQuestions(courseNumber, offsetNumber);
         offsetNumber++;
@@ -71,6 +68,5 @@
 {#if resolved}
     <p use:viewport
         on:enterViewport={() => loadMoreQuestions()}
-        on:exitViewport={() => console.log('exit viewport!')}
     ></p>
 {/if}

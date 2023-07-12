@@ -18,14 +18,12 @@
     const eventSource = new EventSource("/api/q-a-updates");
     eventSource.onmessage = (event) => {
         if (event.data === "AnswerAdded") {
-            console.log(event.data);
             handleAddedAnswer();
         };
     };
 
     const loadFirstAnswers = async () => {
         newBatchOfAnswers = await getCourseQuestionAnswers(questionID, 0);
-        console.log(newBatchOfAnswers);
         resolved = true;
     };
 
@@ -38,7 +36,6 @@
     };
 
     const loadMoreAnswers = async () => {
-        console.log("Now more answers should be loaded");
         await new Promise(r => setTimeout(r, 1000));
         newBatchOfAnswers = await getCourseQuestionAnswers(questionID, offsetNumber);
         offsetNumber++;
@@ -80,6 +77,5 @@
 {#if resolved}
     <p use:viewport
         on:enterViewport={() => loadMoreAnswers()}
-        on:exitViewport={() => console.log('exit viewport!')}
     ></p>
 {/if}

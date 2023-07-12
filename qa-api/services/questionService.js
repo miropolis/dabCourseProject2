@@ -15,7 +15,6 @@ const findMoreCourseQuestions = async (c_id, offset_number) => {
 };
 
 const findCourseQuestionAnswers = async (q_id) => {
-  console.log("LOG THIS TYPE FIRST ", typeof q_id)
   return await sql`SELECT * FROM answers WHERE question_id = ${q_id} ORDER BY posted DESC LIMIT 20;`;
 };
 

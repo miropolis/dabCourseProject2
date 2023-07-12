@@ -15,10 +15,6 @@ worker.onmessage = async (e) => {
 // start of SSE
 const encoder = new TextEncoder();
 let controllers = new Set();;
-/*setInterval(() => {
-    const msg = encoder.encode(`data: abc\n\n`);
-    controllers.forEach((controller) => controller.enqueue(msg));
-}, 1000);*/
 
 const sendUpdate = async (message) => {
   const msg = encoder.encode(`data: ${message}\n\n`);

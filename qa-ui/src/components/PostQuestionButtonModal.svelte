@@ -19,9 +19,7 @@
     };
     const postQuestion = async () => {
         const response = await setCourseQuestion(courseNumber, questionTitle, questionContent, $userUuid);
-        console.log("Response from postQuestion in Modal: ", response)
         if (response.questionAdded === false) {
-            console.log("question was not added!")
             alert("Please wait " + response.seconds + " more seconds before posting a new question or answer!");
         } else {
             isModalVisible = false;

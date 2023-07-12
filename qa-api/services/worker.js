@@ -2,7 +2,6 @@ let llmQueue = [];
 
 self.onmessage = async (e) => {
     const { q_id, q_title } = e.data;
-    console.log(q_id, " - ", q_title);
     llmQueue.push([q_id, q_title]);
   };
 
