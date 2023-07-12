@@ -28,8 +28,7 @@ The repository comes with  5 .. The tests can be run by entering the following c
 
 ## Open psql console
 
-    docker exec -it database-server psql -U username database
-
+    docker exec -it database-server-dab-p2-b241a653-3a34-4290-a68e-d29598a2644b psql -U username database
 
 ## Wrong time
 

@@ -52,12 +52,15 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6">
-                <p class="text-base leading-relaxed text-gray-500">
-                    Ask your question as precisely as possible. Use a meaningful title to efficiently receive guidance.
+                <p class="text-base leading-relaxed">
+                    Ask your question as precisely as possible. Put the whole question in the question title, followed by a question sign. This prompt will be answered by the large language model.
                 </p>
-                <p>Question title</p>
+                <p class="text-base leading-relaxed">
+                    Any other information or additonal questions can be put in the question content
+                </p>
+                <p class="text-base leading-relaxed text-gray-500">Question title</p>
                 <input id="question-title-input" type="text" bind:value={questionTitle} class="border border-gray-500 rounded-lg p-1" />
-                <p>Question text</p>
+                <p class="text-base leading-relaxed text-gray-500">Question text</p>
                 <textarea bind:value={questionContent} class="w-full border border-gray-500 rounded-lg p-1"></textarea>
             </div>
             <!-- Modal footer -->

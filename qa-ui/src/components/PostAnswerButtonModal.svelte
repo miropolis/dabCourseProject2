@@ -52,12 +52,12 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6">
-                <p class="text-base leading-relaxed text-gray-500">
-                    Try to provide an answer that is easy to understand and follow.
+                <p class="text-base leading-relaxed">
+                    Try to provide an answer that is easy to understand and actually helps the asking person.
                 </p>
-                <p>Answer title</p>
-                <input type="text" bind:value={answerTitle} class="border border-gray-500 rounded-lg p-1" />
-                <p>Answer text</p>
+                <p class="text-base leading-relaxed text-gray-500">Answer title</p>
+                <input id="answer-title-input" type="text" bind:value={answerTitle} class="border border-gray-500 rounded-lg p-1" />
+                <p class="text-base leading-relaxed text-gray-500">Answer text</p>
                 <textarea bind:value={answerContent} class="w-full border border-gray-500 rounded-lg p-1"></textarea>
             </div>
             <!-- Modal footer -->
