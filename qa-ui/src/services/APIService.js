@@ -33,7 +33,6 @@ const setCourseQuestion = async (c_id, q_title, q_content, user_uuid) => {
         },
         body: JSON.stringify(data),
     });
-    //TODO unsuccessful return?
     return await response.json();
 };
 

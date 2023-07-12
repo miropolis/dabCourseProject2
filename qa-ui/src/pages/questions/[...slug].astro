@@ -5,12 +5,10 @@ import AnswerList from "../../components/AnswerList.svelte"
 const { slug } = Astro.params;
 // TODO this should be substring from 0 to the next / and then append quetsion title
 const questionID = slug.substring(0);
-// TODO remove slug comment
 ---
 
 <Layout>
 
-  <!-- <h1 class="bg-red-300">Slug from questions/...: {slug} (from [...slug].astro AND questionID: {questionID}</h1> -->
   <AnswerList questionID={slug} client:only={"svelte"} />
 
 </Layout>

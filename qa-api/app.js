@@ -4,7 +4,6 @@ import * as upvoteService from "./services/upvoteService.js";
 import * as userService from "./services/userService.js";
 import { getUserPostedRecently } from "./utils/userPostedRecentlyGetter.js";
 
-// TODO Put all handlers in separate files
 const worker = new Worker(new URL("./services/worker.js", import.meta.url).href, { type: "module" });
 worker.onmessage = async (e) => {
   const { q_id, a_content } = e.data;

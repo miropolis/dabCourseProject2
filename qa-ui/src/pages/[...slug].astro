@@ -5,13 +5,10 @@ import QuestionList from "../components/QuestionList.svelte";
 
 const { slug } = Astro.params;
 const courseNumber = slug.substring(7,8);
-
-// TODO remove slug comment
 ---
 
 <Layout>
 
-  <!-- <h1 class="bg-red-300">Slug: {slug} (from [...slug].astro and courseNumber: {courseNumber}</h1> -->
   <QuestionList courseNumber={courseNumber} client:only={"svelte"} />
 
 </Layout>
