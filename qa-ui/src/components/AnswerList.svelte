@@ -14,10 +14,9 @@
     let offsetNumber = 1;
     let resolved = false;
 
-    // TODO onMount open eventsource, onDestroy close it
     const eventSource = new EventSource("/api/q-a-updates");
     eventSource.onmessage = (event) => {
-        if (event.data === "AnswerAdded") {
+        if (event.data.substring(0,6) === "AAdded" && event.data.substring(6) == questionID) {
             handleAddedAnswer();
         };
     };

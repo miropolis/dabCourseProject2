@@ -85,7 +85,7 @@ const handleSetCourseQuestion = async (request) => {
   worker.postMessage({ q_id: createdQuestion[0].id, q_title: params.q_title });
   worker.postMessage({ q_id: createdQuestion[0].id, q_title: params.q_title });
   worker.postMessage({ q_id: createdQuestion[0].id, q_title: params.q_title });
-  sendUpdate("QuestionAdded");
+  sendUpdate("QAdded" + params.c_id);
   return new Response(JSON.stringify(responseData));
 }
 
@@ -97,7 +97,7 @@ const handleSetCourseQuestionAnswer = async (request) => {
     return new Response(JSON.stringify(responseData));
   };
   const createdAnswer = await questionService.writeCourseQuestionAnswer(params.q_id, params.a_title, params.a_content);
-  sendUpdate("AnswerAdded");
+  sendUpdate("AAdded" + params.q_id);
   return new Response(JSON.stringify(responseData));
 }
 
