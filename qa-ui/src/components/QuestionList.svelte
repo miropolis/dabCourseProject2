@@ -54,8 +54,8 @@
     
 </script>
 
-<span class="float-right p-2 border border-gray-300"><a href="/">Go back to course selection</a></span>
 <h1 class="text-3xl font-bold mb-4">Course {courseNumber}</h1>
+<span class="float-right p-2 border border-gray-300"><a href="/">Go back to course selection</a></span>
 <div>
     <!-- Removed on:change{handleAddedQuestion} because it is updated by SSE -->
     <PostQuestionButtonModal courseNumber={courseNumber}/>
@@ -64,6 +64,9 @@
 {#each questions as question}
     <Question questionTitle={question.title} questionContent={question.question_content} questionDate= {question.posted} questionID={question.id}/>
 {/each}
+{#if questions.length == 0}
+    <p>Looks like there are no questions in this course yet. Feel free to ask the first one!</p>
+{/if}
 
 {#if resolved}
     <p use:viewport

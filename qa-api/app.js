@@ -9,6 +9,7 @@ const worker = new Worker(new URL("./services/worker.js", import.meta.url).href,
 worker.onmessage = async (e) => {
   const { q_id, a_content } = e.data;
   await questionService.writeCourseQuestionAnswer(q_id, "Auto Generated Answer", a_content);
+  sendUpdate("AnswerAdded");
 };
 
 // start of SSE

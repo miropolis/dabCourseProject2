@@ -17,3 +17,11 @@ For instructions on how to run this application and the corresponding tests, see
 ## Reflection on development process
 
 For my reflections on the development process, see REFLECTION.md
+
+## Database schema considerations
+
+For my considerations on the database schema, see DATABASE.md
+
+## Performance test results
+
+For the performance test results, see PERFORMANCE_TEST_RESULTS.md
