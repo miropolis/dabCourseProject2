@@ -26,3 +26,7 @@ Taken from https://svelte.dev/repl/4863a658f3584b81bbe3d9f54eb67899?version=3.32
 ## Question and Answer Submission Modals
 
 TODO Taken from Tailwind website
+
+## nginx cache
+
+No caching of UI in nginx because it is dynamic rather than static

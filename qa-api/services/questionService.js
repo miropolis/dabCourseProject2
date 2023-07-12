@@ -9,15 +9,20 @@ const findCourseQuestions = async (c_id) => {
 };
 
 const findMoreCourseQuestions = async (c_id, offset_number) => {
-  return await sql`SELECT * FROM questions WHERE course_id = ${c_id} ORDER BY posted DESC LIMIT 20 OFFSET ${offset_number*20};`;
+  c_id = Number.parseInt(c_id)
+  offset_number = offset_number * 20;
+  return await sql`SELECT * FROM questions WHERE course_id = ${c_id} ORDER BY posted DESC LIMIT 20 OFFSET ${offset_number};`;
 };
 
 const findCourseQuestionAnswers = async (q_id) => {
+  console.log("LOG THIS TYPE FIRST ", typeof q_id)
   return await sql`SELECT * FROM answers WHERE question_id = ${q_id} ORDER BY posted DESC LIMIT 20;`;
 };
 
 const findMoreCourseQuestionAnswers = async (q_id, offset_number) => {
-  return await sql`SELECT * FROM answers WHERE question_id = ${q_id} ORDER BY posted DESC LIMIT 20 OFFSET ${offset_number*20};`;
+  q_id = Number.parseInt(q_id)
+  offset_number = offset_number * 20;
+  return await sql`SELECT * FROM answers WHERE question_id = ${q_id} ORDER BY posted DESC LIMIT 20 OFFSET ${offset_number};`;
 };
 
 const writeCourseQuestion = async (c_id, q_title, q_content) => {
