@@ -35,6 +35,10 @@ CREATE TABLE user_timetable (
     id SERIAL PRIMARY KEY,
     user_uuid TEXT NOT NULL,
     posted TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-)
+);
 
-/* TODO Create meaningful indexes */
+CREATE INDEX idx_question_upvotes_user ON question_upvotes (user_uuid);
+
+CREATE INDEX idx_answer_upvotes_user ON answer_upvotes (user_uuid);
+
+CREATE INDEX idx_user_timetable_user ON user_timetable (user_uuid);
