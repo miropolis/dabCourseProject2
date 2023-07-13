@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qa-ui-deployment
+  labels:
+    app: qa-ui
+spec:
+  selector:
+    matchLabels:
+      app: qa-ui
+  template:
+    metadata:
+      labels:
+        app: qa-ui
+    spec:
+      containers:
+        - name: qa-ui
+          image: qa-ui:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 7777
