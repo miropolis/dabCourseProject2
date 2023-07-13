@@ -56,7 +56,7 @@
     <p>Loading question</p>
 {:then questions}
 <div class="mb-4 pb-20 p-6 bg-white border border-gray-200 rounded-lg shadow">
-    <span class="float-right text-sm">Posted on: {questions[0].posted}</span>
+    <span class="float-right text-sm">Last updated at: {questions[0].posted}</span>
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{questions[0].title}</h5>
     <p class="font-normal text-gray-700">{questions[0].question_content}</p>
     <Upvote isQuestion={true} q_a_id={questionID}/>
