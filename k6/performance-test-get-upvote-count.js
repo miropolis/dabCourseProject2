@@ -1,6 +1,6 @@
 import http from "k6/http";
 let i = 1;
-
+// TODO test get upvote count
 export const options = {
   duration: "10s",
   vus: 10,

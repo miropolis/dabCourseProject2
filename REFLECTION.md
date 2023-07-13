@@ -19,11 +19,21 @@ Because I am using server side rendering in Astro it would require an adapter (e
 
 The web worker requires the --allow-read flag
 
-## Infinite Scroll
+## Key features
+
+### Infinite Scroll
 
 Taken from https://svelte.dev/repl/4863a658f3584b81bbe3d9f54eb67899?version=3.32.3
 
 uses the useViewportAction.js
+
+### Automatic update in client for new questions and answers
+
+Used server sent events
+
+### Question/Answer Submission Limit
+
+Uses a separate database table
 
 ## Question and Answer Submission Modals
 
