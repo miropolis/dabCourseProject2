@@ -18,4 +18,4 @@ spec:
           image: qa-ui:latest
           imagePullPolicy: Never
           ports:
-            - containerPort: 7777
+            - containerPort: 3000

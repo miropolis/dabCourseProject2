@@ -5,8 +5,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 7777
-      targetPort: 7777
+    - port: 3000
+      targetPort: 3000
       protocol: TCP
   selector:
     app: qa-ui

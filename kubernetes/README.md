@@ -2,6 +2,10 @@
 
 First: '$minikube status' and probably '$minikube start'
 
+Continue with this guide to connect backend, frontend and everything:
+
+https://kubernetes.io/docs/tasks/access-application-cluster/connecting-frontend-backend/
+
 ## qa-api
 
 1. Built the kubernetes image for qa-api with the command (In qa-api folder!)
@@ -31,4 +35,20 @@ kubectl delete -f kubernetes/qa-api-deployment.yaml
 
     minikube image build -t qa-api -f ./Dockerfile .
 
+2. Deploy service and application
+kubectl apply -f kubernetes/qa-ui-deployment.yaml,kubernetes/qa-ui-service.yaml
 
+
+## Kubernetes Kompose
+
+Translate docker-compose.yml to kuberentes configuration files
+In directory with yml files run
+kompose convert
+or
+kompose --file docker-compose.prod.yml convert
+
+## Use Kubernets Kompose files
+
+kubectl apply -f kubernetes-kompose/nginx-deployment.yaml,kubernetes-kompose/nginx-service.yaml,kubernetes-kompose/nginx-claim0-persistentvolumeclaim.yaml
+
+did not work with nginx
