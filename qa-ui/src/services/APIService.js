@@ -1,5 +1,3 @@
-// TODO put all api calls here with TRY ERROR BLOCKS and alternative display return
-
 const getQuestion = async (q_id) => {
     const data = { q_id: q_id };
     const response = await fetch("/api/question", {
