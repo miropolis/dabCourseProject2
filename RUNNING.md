@@ -8,6 +8,8 @@ Run the production configuration
 
     docker compose -f docker-compose.prod.yml up -d
 
+Either configuration will serve the application on localhost at port 7800.
+
 # Running Tests
 
 ## Running Playwright E2E Tests
