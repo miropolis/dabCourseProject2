@@ -1,6 +1,5 @@
 import http from "k6/http";
-let i = 1;
-// TODO test get questions
+
 export const options = {
   duration: "10s",
   vus: 10,
@@ -8,13 +7,11 @@ export const options = {
 };
 
 export default function () {
-  const url = "http://localhost:7800/api/post-answer";
+  const url = "http://localhost:7800/api/questions";
 
   const payload = JSON.stringify({
-    q_id: 1,
-    a_title: "k6 example answer" + i,
-    a_content: "k6 example answer content",
-    user_uuid: "k6-test-user",
+    c_id: 1,
+    offset_number: 0,
   });
 
   const params = {
@@ -24,5 +21,4 @@ export default function () {
   };
 
   http.post(url, payload, params);
-  i++;
 }

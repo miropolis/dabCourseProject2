@@ -7,6 +7,7 @@ First: '$minikube status' and probably '$minikube start'
 Continue with this guide to connect backend, frontend and everything:
 
 https://kubernetes.io/docs/tasks/access-application-cluster/connecting-frontend-backend/
+https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/
 
 ## qa-api
 
@@ -35,7 +36,7 @@ kubectl delete -f kubernetes/qa-api-deployment.yaml
 
 1. Built the kubernetes image for qa-ui with the command (In qa-ui folder!)
 
-    minikube image build -t qa-api -f ./Dockerfile .
+    minikube image build -t qa-ui -f ./Dockerfile .
 
 2. Deploy service and application
 kubectl apply -f kubernetes/qa-ui-deployment.yaml,kubernetes/qa-ui-service.yaml

@@ -1,6 +1,6 @@
 import http from "k6/http";
-let i = 1;
-// TODO test set upvote change
+let isUpvoted = false;
+
 export const options = {
   duration: "10s",
   vus: 10,
@@ -8,13 +8,13 @@ export const options = {
 };
 
 export default function () {
-  const url = "http://localhost:7800/api/post-answer";
+  const url = "http://localhost:7800/api/set-user-upvote";
 
   const payload = JSON.stringify({
-    q_id: 1,
-    a_title: "k6 example answer" + i,
-    a_content: "k6 example answer content",
+    q_a_id: 1,
     user_uuid: "k6-test-user",
+    isQuestion: true,
+    isUpvoted: isUpvoted,
   });
 
   const params = {
@@ -23,6 +23,10 @@ export default function () {
     },
   };
 
+  if (isUpvoted) {
+    isUpvoted = false;
+  } else {
+    isUpvoted = true;
+  };
   http.post(url, payload, params);
-  i++;
 }
