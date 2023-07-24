@@ -1,5 +1,3 @@
-TODO aiming for merits 
-
 # DAB Course Project II
 
 This is Course Project II of CS-E4770 Designing and Building Scalable Web Applications D at Aalto University 

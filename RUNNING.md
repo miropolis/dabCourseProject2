@@ -1,7 +1,3 @@
-TODO: The RUNNING.md outlines steps needed to run the application separately for the development mode and the production mode.
-
-TODO: For merits, the RUNNING.md also outlines the steps needed to use Kubernetes to run the application with Minikube (or somilar), using kubernetes configuration files created as parts of the passing with merits requirements
-
 # Development and Production Configurations
 
 Run the development configuration
@@ -24,7 +20,7 @@ The repository comes with 5 playwright tests to verify that the various function
 
 The tests only work when the application is already running. The performance tests can be run by entering the following command:
 
-    TODO k6 run ./k6/performance-test-assignments.js
+    k6 run k6/<test-name>.js
 
 ## Open psql console
 

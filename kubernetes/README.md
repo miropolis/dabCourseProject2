@@ -1,7 +1,5 @@
 # What I did for kubernetes already
 
-TODO cleanup
-
 First: '$minikube status' and probably '$minikube start'
 
 Continue with this guide to connect backend, frontend and everything:

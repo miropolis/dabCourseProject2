@@ -11,7 +11,6 @@
     let offsetNumber = 1;
     let resolved = false;
 
-    // TODO onMount and onDestroy eventSource
     const eventSource = new EventSource("/api/q-a-updates");
     eventSource.onmessage = (event) => {
         if (event.data.substring(0,6) === "QAdded" && event.data.substring(6) == courseNumber) {
